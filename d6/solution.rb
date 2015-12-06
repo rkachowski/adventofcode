@@ -1,4 +1,3 @@
-require 'pry'
 input = File.read "input"
 
 lights = []
@@ -20,7 +19,6 @@ input.each_line do |l|
 
   coords[0][0].upto(coords[1][0]) do |x|
     coords[0][1].upto(coords[1][1]) do |y|
-      binding.pry if lights[x][y] == nil
       lights[x][y] = lightBlock.call(lights[x][y] )
     end
   end
