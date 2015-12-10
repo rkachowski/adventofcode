@@ -15,6 +15,7 @@ end
 
 paths = cities.permutation.map{|c| c.join "->"}
 distances = {}
+
 paths.each do |path|
   cities_in_path = path.split "->"
 
