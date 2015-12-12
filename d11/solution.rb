@@ -1,20 +1,3 @@
-class String
-  def inc
-    incremented = false
-    bytes = self.bytes.reverse.map do |byte| 
-      result = byte
-      if byte + 1 >= 123 and !incremented
-        result = 97
-      else
-        result = byte + 1 unless incremented
-        incremented = true
-      end
-      result
-    end
-    bytes.reverse.pack "C*"
-  end
-end
-
 def distinct_pairs str
   str.scan(/([a-z])\1/).uniq.length >= 2
 end
@@ -34,12 +17,12 @@ end
 
 def get_next password
   loop do
-    password = password.inc
+    password = password.next
     break if valid? password
   end
   password
 end
-password = "cqjxjnds".inc
+password = "cqjxjnds"
 
 puts "part 1"
 result = get_next(password)
