@@ -16,22 +16,18 @@ end
 puts "--- part 1 ---"
 puts distances.max
 
-deer = {}
+deer = Hash.new {|k,v| k[v] = {}}
 input.each_line.map do |line|
   stats = line.scan(/(\d+)/).flatten.map(&:to_i)
   name = line.split(" ").first
 
-  deer[name]={}
   deer[name][:stats] = stats
   deer[name][:points] = 0
-  
 end
 
 2503.times do |i|
   round_results = {}
-  deer.each do |k,v|
-    round_results[k] = distance *v[:stats], i+1
-  end
+  deer.each { |k,v| round_results[k] = distance *v[:stats], i+1 }
   round_results.each do |k,v|
     deer[k][:points] = deer[k][:points] + 1 if v == round_results.values.max
   end
